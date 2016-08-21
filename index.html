@@ -1,0 +1,373 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <title>P2PSP-Android</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <style>
+body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+  }
+  h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+  footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+        font-size: 150px;
+    }
+  }
+
+.bg-grey {
+      background-color: #f6f6f6;
+  }
+
+.jumbotron {
+    /*background-color: #F46967;  Orange */
+    color: #ffffff;
+    background: #000 url("http://picalls.com/wp-content/uploads/2015/02/Elegance-by-Slurpaza.jpg") center center;
+    background-size: cover;
+     padding: 100px 25px;
+     font-family: Lato,Montserrat, sans-serif;
+}
+
+.container-fluid {
+    padding: 60px 50px;
+    background-color: #ffffff;
+	color: #E95C65;
+	font-family: Lato,Montserrat, sans-serif;
+	font-size: 20px !important;
+}
+/* Add an orange color to all icons and set the font-size */
+.logo-small {
+    color: #C04969;
+    font-size: 50px;
+}
+
+.logo {
+    color: #C04969;
+    font-size: 120px;
+}
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+}
+
+
+
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 25px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #F46967;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Lato,Montserrat, sans-serif;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+    font-family: Lato,Montserrat, sans-serif;
+}
+
+
+</style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand pull-left" href="#myPage"><img src="https://developers.google.com/open-source/gsoc/resources/downloads/GSoC-icon.svg" style="width:100px;height:70px;"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#project">PROJECT</a></li>
+        <li><a href="#links">LINKS</a></li>
+        <li><a href="#tasks">TASKS</a></li>
+        
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center" >
+  <h1>Implementation of a P2PSP client as an Android application</h1>
+  <p>P2PSP</p>
+  <p>Google Summer Of Code 2016</p>
+  <form class="form-inline"> 
+  <button type="button" class="btn btn-danger btn-circle" style="background-color:transparent"><svg aria-hidden="true" height="28" version="1.1" viewBox="0 0 16 16" width="28"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></button>
+  <button type="button" class="btn btn-danger">Download .tar</button>
+  <button type="button" class="btn btn-danger">Download .tar.gz</button>
+  </form>
+
+
+</div>
+
+<!-- Container (About Section) -->
+
+<div id="about" class="container-fluid bg-grey">
+ <div class="row">
+    <div class="col-sm-4">
+      <p><img src="http://www.p2psp.org/images/p2psplogo.png" width="100%" class="slideanim"></p>
+    </div>
+    <div class="col-sm-8">
+  	<h2>About <strong>P2PSP</strong> (Peer-to-Peer "Straightforward" Protocol) </h2>
+  <h4>The P2PSP is an application layer protocol for the real-time streaming of multimedia content over the Internet, i.e., where the users playback the stream in a synchronized way. It can be used to build a variety of live streaming services that ranges from small hangouts to large IPTV systems. </h4>      
+  <p><strong>Learn more about it here at</strong> <a href="http://www.p2psp.org/en/p2psp-protocol"> P2PSP protocol.</a></p>
+</div>
+</div>
+</div> 
+
+
+<div id ="project" class="container-fluid">
+<div class="row">
+    <div class="col-sm-6 ">
+  <h2>About the project</h2>
+  <h4>In this project, my task was to port the P2PSP client as an Android application. My project aims at doing what a <a href="https://github.com/P2PSP/p2psp-console/tree/master/src">p2psp-console</a> does, but on an Android based device. I was given a task of implementing the P2PSP protocol thus making an Android powered device an <strong>"android-peer"</strong>.</h4> 
+  <p><h4>It ressembles the part <strong>3</strong> of the process as depicted in the image, i.e recieving the chunk sent to the android-peer, which instead sends its chunks to other android-peers so that all the peers have the whole stream.</h4></p>
+
+
+ <p><h3><strong>My project is being mentored by </strong></h3>
+
+ <p><h4><a href="https://github.com/jp-garcia-ortiz">Juan Pablo Garcia Ortiz (JP) </a> </h4></p> 
+
+ <p><h4><a href="https://github.com/josejuansanchez">Jose Juan Sanchez</a> </h4></p>
+
+ 
+ </p>
+
+  
+</div>
+<div class="col-sm-6">
+      <p><img src="http://www.p2psp.org/images/posterp2pspEN.png" width="100%" class="slideanim"></p>
+
+    </div>
+    </div>
+    </div>
+
+<div id = "links" class="container-fluid text-center">
+  <h2>Important links</h2>
+  <h4>Links to commits made, issues added and pull requests made.</h4>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon  glyphicon-random logo-small slideanim"></span>
+      <h4>PULL REQUESTS</h4>
+      <p><a href="https://github.com/josejuansanchez/Hello-libs-boost/pull/2">The commits reflect P2PSP core library build. #2</a></p>
+      <p><a href="https://github.com/josejuansanchez/Hello-libs-boost/pull/1">Updated the jni hello-libs.cpp file and added the module declarations #1</a></p>
+    </div>
+
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-edit logo-small"></span>
+      <h4>COMMITS</h4>
+      <p><a href="https://github.com/cRAN-cg/Hello-libs-boost/commits/master">List of commits made to the local repository.</a></p>
+    </div>
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-alert logo-small"></span>
+      <h4>ISSUES</h4>
+      <p><a href="https://github.com/cRAN-cg/Hello-libs-boost/issues">Open Issues</a></p>
+      <p><a href="https://github.com/cRAN-cg/Hello-libs-boost/issues?q=is%3Aissue+is%3Aclosed">Closed Issues</a></p>
+    </div>
+    </div>
+    <br><br>
+</div>
+
+<div id="tasks" class="container-fluid bg-grey">
+ <div class="row">
+ 	<div class="col-sm-4">
+ 		<p><span class="glyphicon glyphicon-ok-sign logo slideanim" style="padding:40px 100px"></span></p>
+ 	</div>
+    <div class="col-sm-8">
+  	<h2>TASKS COMPLETED</h2>
+  <h4><strong>PRE-BUILD TASKS</strong></h4>      
+  <p><strong>Porting Boost to Android: </strong>Boost dependencies related to building p2psp <strong>dbs files</strong> were successfully resolved by using Prebuilt Boost Libraries. The linking was done using gradle syntax structure.</p>
+  <p><strong>Editing core files: </strong>I had used the primitive version of prebuilt Boost libraries for Android which was short of some modules including the <strong>log</strong> module and hence as a workaround I had to edit the <strong>TRACE</strong> messages which were used to display the message to the console, which otherwise would have been throwing <a href="http://stackoverflow.com/questions/38274943/android-ndk-linker-errorerror-undefined-reference-to-stdbasic-string">errors</a> during the build.</p>
+
+  <h4><strong>POST-BUILD TASKS</strong></h4>      
+  <p><strong>Implementing LibVLC on Android: </strong>LibVLC for Android is aimed at enabling the Android devices with the powers VLC player and hence fulfilling our player for <strong><b>android-peer</b></strong></p>
+ 
+</div>
+</div>
+</div>
+
+<div class="container-fluid bg-grey">
+ <div class="row">
+ 	
+    <div class="col-sm-8">
+  	<h2>TASKS PENDING (Work in progress)</h2>
+  <p><strong>Implementing LibVLC on Android: </strong>Building LibVLC for Android is being worked upon and issues related to it's build specifically the error related to <a href="https://code.videolan.org/videolan/vlc-android/issues/118"><b><i>"vpx"</i></b></a> is yet to be resolved.</p>
+  <p><strong>Testing the Android Peer: </strong>Testing the <b>android-peer</b> is still under progress. I am presently working on resolving the issue related to the native jni method implementation.</p>
+ 
+</div>
+<div class="col-sm-4">
+	<p><span class="glyphicon glyphicon-wrench logo slideanim" style="padding:40px 100px"></span></p>
+</div>
+</div>
+</div>
+
+
+
+ <div class="container-fluid bg-grey" id="contact">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-6">
+      <p>For any further queries regarding the project I can be reached at :</p>
+      <p><span class="glyphicon glyphicon-user"></span> <a href="https://github.com/cRAN-cg">https://github.com/cRAN-cg</a> </p>
+      <p><span class="glyphicon glyphicon-phone"></span> +91 8272823633</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> guptachiranjeev.13@gmail.com</p>
+    </div>
+
+        <div class="col-sm-6">
+      <p>My mentor organisation <strong>P2PSP</strong> can be reached at :</p>
+      <p><span class="glyphicon glyphicon-user"></span> <a href="https://github.com/P2PSP">https://github.com/P2PSP</a> </p>
+      <p><span class="glyphicon glyphicon-globe"></span> <a href="http://www.p2psp.org/en/"> http://www.p2psp.org/en/</a></p>
+    </div>
+
+  </div>
+</div>
+
+
+
+ <footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Bootstrap Theme Inspired By <a href="http://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+
+
+
+</body>
+</html>
